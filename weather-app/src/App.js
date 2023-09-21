@@ -27,9 +27,9 @@ function App() {
 
   return (
     <Container style={{marginTop: "10px"}}>
-      <h1>Pogoda teraz</h1>
+      <h1>Weather now</h1>
 
-      {/*<h5>Aktualny czas:<br/>*/}
+      {/*<h5>Current time:<br/>*/}
       <h5>
         {/*{time.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"})},&nbsp;*/}
         {date.toLocaleDateString([], {day: "numeric", month: "numeric", year: "numeric"})}

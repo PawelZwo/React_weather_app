@@ -17,7 +17,6 @@ export function CityWeatherCard({city}) {
       .then(data => setCityData(data))
       .catch(error => console.error(error))
     setIsLoading(false);
-
   };
 
   const {temp_c, pressure_mb} = cityData?.current || {};
