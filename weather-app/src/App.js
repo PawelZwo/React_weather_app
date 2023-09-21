@@ -1,51 +1,31 @@
-import React, {useEffect, useState} from "react";
-// import {Data} from "./components/Main";
-import {apiKey} from "./apiKey";
-import {Card, Col, Container, Row, Spinner} from "react-bootstrap";
-
-let autoIp = "auto:ip";
-
-function Data() {
-  const [city, setCity] = useState()
-
-  let apiUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city ? city : autoIp}&aqi=no`;
-
-  const [cityData, setCityData] = useState(null);
-
-  const fetchApi = async () => {
-    await fetch(apiUrl)
-      .then(res => res.json())
-      .then(data => setCityData(data))
-      .catch(error => console.error(error))
-  };
-
-  useEffect(() => {
-    fetchApi();
-  }, [])
-
-  if (cityData) {
-    return (
-      <Card>
-        <Card.Img variant="top" src={cityData.current.condition.icon}/>
-        <Card.Body>
-          {cityData.current.condition.text}
-          <Card.Title>{cityData.location.name}, {cityData.location.country}</Card.Title>
-          <Card.Text>{cityData.current.temp_c}&#176;C</Card.Text>
-        </Card.Body>
-      </Card>
-    )
-  }
-  return <Spinner animation="border"/>;
-}
+import React, {useState} from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import {CityWeatherCard} from "./components/CityWeatherCard";
 
 function App() {
+  const cities = ["auto:ip", "poznan", "gdansk", "lodz", "szczecin"];
+  const [time, setTime] = useState(new Date());
+  const date = new Date();
+
+  setTimeout(() => {
+    setTime(new Date())
+  }, 60000);
+
   return (
-    <Container>
-      <Row className="justify-content-md-center">
-        <Col>
-          <h1>Pogoda teraz</h1>
-          <Data/>
-        </Col>
+    <Container style={{marginTop: "10px"}}>
+      <h1>Pogoda teraz</h1>
+      <h5>Aktualny czas: {time.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit"
+      })}, {date.toLocaleDateString([], {day: "numeric", month: "numeric", year: "numeric"})}
+      </h5>
+      <Row className="justify-content-md-evenly" style={{marginLeft: "10px"}}>
+        {
+          cities.map((city) => {
+            return <CityWeatherCard key={city.toLowerCase()} city={city.toLowerCase()}/>
+          })
+        }
       </Row>
     </Container>
   );
