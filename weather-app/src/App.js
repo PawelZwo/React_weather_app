@@ -15,11 +15,12 @@ function App() {
   return (
     <Container style={{marginTop: "10px"}}>
       <h1>Pogoda teraz</h1>
-      <h5>Aktualny czas: {time.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit"
-      })}, {date.toLocaleDateString([], {day: "numeric", month: "numeric", year: "numeric"})}
+
+      <h5>Aktualny czas:<br/>
+        {time.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"})},&nbsp;
+        {date.toLocaleDateString([], {day: "numeric", month: "numeric", year: "numeric"})}
       </h5>
+
       <Row className="justify-content-md-evenly" style={{marginLeft: "10px"}}>
         {
           cities.map((city) => {
@@ -27,6 +28,7 @@ function App() {
           })
         }
       </Row>
+
     </Container>
   );
 }
