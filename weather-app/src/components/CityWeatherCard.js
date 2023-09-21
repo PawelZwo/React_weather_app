@@ -16,32 +16,29 @@ export function CityWeatherCard({city}) {
       .then(res => res.json())
       .then(data => setCityData(data))
       .catch(error => console.error(error))
-      setIsLoading(false);
+    setIsLoading(false);
+
   };
 
-  // const fetchData = async () => {
-  //   const res = await fetch(apiUrl + `&q=${city}`);
-  //   const data = await res.json();
-  //   setCityData(data)
-  // }
+  const {temp_c, pressure_mb} = cityData?.current || {};
+  const {icon, text} = cityData?.current?.condition || {};
 
   useEffect(() => {
     fetchApi();
   }, []);
 
-  return !isLoading?
+  return !isLoading ?
     (
-    <Card style={{width: '10rem', marginLeft: "-10px", marginRight: "20px", marginTop: "10px"}}>
-      <Card.Img variant="top" src={cityData.current.condition.icon} style={{width: "64px", height: "64px"}}/>
-      <Card.Body>
-        <Card.Subtitle>{cityData.current.condition.text}</Card.Subtitle>
-        <Card.Title>{cityData.location.name}</Card.Title>
-        <Card.Text>
-          {cityData.current.temp_c}&#176;C <br/>
-          {/*{cityData.current.wind_kph} km/h {cityData.current.wind_dir}<br/>*/}
-          {cityData.current.pressure_mb} hPa
-        </Card.Text>
-      </Card.Body>
-    </Card>
-  ) : <Spinner animation="border"/>
+      <Card style={{width: '10rem', marginLeft: "-10px", marginRight: "20px", marginTop: "10px"}}>
+        <Card.Img variant="top" src={icon} style={{width: "64px", height: "64px"}}/>
+        <Card.Body>
+          <Card.Subtitle>{text}</Card.Subtitle>
+          <Card.Title>{cityData.location.name}</Card.Title>
+          <Card.Text>
+            {temp_c}&#176;C <br/>
+            {pressure_mb} hPa
+          </Card.Text>
+        </Card.Body>
+      </Card>
+    ) : <Spinner animation="border"/>
 }
