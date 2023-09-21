@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import {CityWeatherCard} from "./components/CityWeatherCard";
 import Form from "react-bootstrap/Form";
-import {Button} from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 function App() {
   const [cities, setCities] = useState(["auto:ip", "berlin", "paris", "rome", "barcelona"]);
