@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import {CityWeatherCard} from "./components/CityWeatherCard";
@@ -11,9 +11,12 @@ function App() {
   const date = new Date();
   const [newCity, setNewCity] = useState("");
 
-  setTimeout(() => {
-    setTime(new Date())
-  }, 60000);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTime(new Date())
+    }, 60000);
+    return () => clearTimeout(timer)
+  }, []);
 
   const onSubmit = e => {
     e.preventDefault();
@@ -40,7 +43,8 @@ function App() {
       <Row style={{marginTop: "20px"}}>
         <Form onSubmit={onSubmit} className="mb-3">
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalCity">
-            <Form.Control type="text" placeholder="City" value={newCity} onChange={e => setNewCity(e.target.value.toLowerCase())}/>
+            <Form.Control type="text" placeholder="City" value={newCity}
+                          onChange={e => setNewCity(e.target.value.toLowerCase())}/>
             <Button type="submit">Add city</Button>
           </Form.Group>
         </Form>
