@@ -27,7 +27,7 @@ export function CityWeatherCard({city}) {
 
   if (cityData) {
     return (
-      <Card style={{width: '10rem', marginRight: "10px", marginTop: "10px"}}>
+      <Card style={{width: '10rem', marginLeft: "-10px", marginRight: "20px", marginTop: "10px"}}>
         <Card.Img variant="top" src={cityData.current.condition.icon} style={{width: "64px", height: "64px"}}/>
         <Card.Body>
           <Card.Subtitle>{cityData.current.condition.text}</Card.Subtitle>

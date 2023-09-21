@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import {CityWeatherCard} from "./components/CityWeatherCard";
 
 function App() {
-  const cities = ["auto:ip", "poznan", "gdansk", "lodz", "szczecin"];
+  const cities = ["auto:ip", "berlin", "paris", "rome"];
   const [time, setTime] = useState(new Date());
   const date = new Date();
 
