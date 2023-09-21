@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
+// import {useEffect} from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import {CityWeatherCard} from "./components/CityWeatherCard";
@@ -7,16 +8,16 @@ import Button from "react-bootstrap/Button";
 
 function App() {
   const [cities, setCities] = useState(["auto:ip", "berlin", "paris", "rome", "barcelona"]);
-  const [time, setTime] = useState(new Date());
+  // const [time, setTime] = useState(new Date());
   const date = new Date();
   const [newCity, setNewCity] = useState("");
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setTime(new Date())
-    }, 60000);
-    return () => clearTimeout(timer)
-  }, []);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setTime(new Date())
+  //   }, 60000);
+  //   return () => clearTimeout(timer)
+  // }, []);
 
   const onSubmit = e => {
     e.preventDefault();
@@ -28,8 +29,9 @@ function App() {
     <Container style={{marginTop: "10px"}}>
       <h1>Pogoda teraz</h1>
 
-      <h5>Aktualny czas:<br/>
-        {time.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"})},&nbsp;
+      {/*<h5>Aktualny czas:<br/>*/}
+      <h5>
+        {/*{time.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"})},&nbsp;*/}
         {date.toLocaleDateString([], {day: "numeric", month: "numeric", year: "numeric"})}
       </h5>
 
