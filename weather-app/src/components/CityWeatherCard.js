@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import {apiKey} from "../apiKey";
 import {Spinner} from "react-bootstrap";
 
-export function CityWeatherCard({city}) {
+export default function CityWeatherCard({city}) {
 
   const [cityData, setCityData] = useState(null);
 
