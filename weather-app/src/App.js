@@ -21,7 +21,7 @@ function App() {
 
   const onSubmit = e => {
     e.preventDefault();
-    setCities(prev => [...prev, newCity])
+    setCities([...cities, newCity])
     setNewCity("");
   }
 
@@ -38,7 +38,7 @@ function App() {
       <Row className="justify-content-md-evenly" style={{marginLeft: "10px", marginTop: "10px"}}>
         {
           cities.map((city) => {
-            return <CityWeatherCard key={city.toLowerCase()} city={city.toLowerCase()}/>
+            return <CityWeatherCard key={city} city={city}/>
           })
         }
       </Row>
@@ -46,7 +46,7 @@ function App() {
         <Form onSubmit={onSubmit} className="mb-3">
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalCity">
             <Form.Control type="text" placeholder="City" value={newCity}
-                          onChange={e => setNewCity(e.target.value.toLowerCase())}/>
+                          onChange={e => setNewCity(e.target.value)}/>
             <Button type="submit">Add city</Button>
           </Form.Group>
         </Form>
